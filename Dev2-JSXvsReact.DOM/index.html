@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head charset-utf-8>
+	<title>JSX vs React.DOM</title>
+</head>
+<body>
+	<!-- conatiner node -->
+	<div id="jsx"></div>
+
+	<div id="dom"></div>
+	<script src="http://fb.me/react-0.11.1.js"></script>
+	<script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
+	<script type="text/jsx">
+		/** @jsx React.DOM */
+		
+		var MessageBoxJSX = React.createClass({
+			render: function(){
+				return(
+					<div className="conatiner">
+						<h1>Hello, Wolrd</h1>
+						<SubMessage/>
+					</div>
+				);
+			}
+		});
+
+		var MessageBoxDOM = React.createClass({
+			render: function(){
+				return React.DOM.h1(null, "Hello, Wolrd");
+			}
+		});
+
+
+		var SubMessage = React.createClass({
+			render: function(){
+				return(
+					<small>Its Good to see you!</small>
+				);
+			}
+		});
+
+		var reactComponenetJSX = React.renderComponent(
+			<MessageBoxJSX />,
+			document.getElementById('jsx')
+		);
+
+		var reactComponentDOM = React.renderComponent(
+			MessageBoxDOM(null),
+			document.getElementById('dom')
+		);
+
+	</script>
+
+</body>
+</html>
